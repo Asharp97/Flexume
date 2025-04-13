@@ -4,20 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
-    "@nuxt/eslint",
     "@nuxt/fonts",
     "@nuxt/icon",
     "@nuxt/content",
     "@nuxt/ui",
     "@nuxt/scripts",
-    "@nuxtjs/i18n",
+    "@nuxtjs/mdc",
   ],
-  i18n: {
-    locales: [
-      { code: "en", language: "en-US" },
-      { code: "tr", language: "tr-TR" },
-    ],
-    defaultLocale: "en",
-  },
   css: ["./assets/styles/design.scss"],
 });

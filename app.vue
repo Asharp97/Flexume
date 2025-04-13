@@ -1,6 +1,8 @@
 <template>
   <UApp>
-    <NuxtPage />
+    <client-only>
+      <NuxtPage />
+    </client-only>
   </UApp>
 </template>
 
@@ -11,7 +13,5 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
- 
 }
 </style>

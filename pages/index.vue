@@ -1,83 +1,98 @@
 <template>
-  <div class="bg">
-    <button>make me a pdf</button>
-    <div class="page">
-      <div class="indent">
-        <div class="title">
-          <h1>Ali Elsayed</h1>
-          <h2>Machine Learning & Software Engineer</h2>
-        </div>
-        <div class="contacts">
-          <div class="contact">
-            <Icon name="material-symbols:mail" />
-            <span class="info"> Ali-Hisham@hotmail.com </span>
-          </div>
-          <div class="contact">
-            <Icon name="material-symbols:call" />
-            <span v-if="tr" class="info"> +90 541 886 22 79 </span>
-            <span v-else class="info"> +971 631 33 52 </span>
-          </div>
-          <div class="contact">
-            <Icon name="ic:sharp-location-on" />
-            <span v-if="tr" class="info"> Turkiye, Istanbul </span>
-            <span v-else class="info"> Dubai, UAE </span>
-          </div>
-          <div class="contact">
-            <Icon name="mdi:github" />
-            <span class="info"> ASharp97.github.io </span>
-          </div>
-          <div class="contact">
-            <Icon name="lineicons:linkedin-original" />
-            <span class="info"> ASharp97.github.io </span>
-          </div>
+  <client-only>
+    <div class="bg">
+      <button v-if="showButton" @click="downloadPdf()">
+        <h1>EXPORT PDF</h1>
+      </button>
+      <div v-if="!showButton" id="ready" />
+      <div ref="cv" class="page">
+        <div class="indent">
+          <Header :tr="tr" />
+          <SectionTitle title="profile" :icon="icon.profile" :text="profile" />
+
+          <SectionTitle
+            title="Skills"
+            :icon="icon.skills"
+            :text="skills"
+            :cols="2" />
+
+          <SectionTitle
+            title="Professional Certificates"
+            :icon="icon.certificates"
+            :text="certificates"
+            :cols="2" />
+
+          <SectionTitle
+            title="Professional Experience"
+            :icon="icon.experience"
+            :text="experience" />
+          <br />
+          <br />
+          <SectionTitle
+            title="projects"
+            :icon="icon.projects"
+            :text="projects" />
+          <SectionTitle
+            title="Education"
+            :icon="icon.education"
+            :text="education" />
+          <SectionTitle
+            title="Languages"
+            :icon="icon.Languages"
+            :text="lang"
+            :cols="3" />
         </div>
       </div>
     </div>
-  </div>
+  </client-only>
 </template>
-
 <script setup>
+import icon from "../icons";
+import {
+  profile,
+  certificates,
+  skills,
+  experience,
+  projects,
+  education,
+  lang,
+} from "~/content";
+
 const tr = ref(false);
+definePageMeta({ ssr: false });
+
+const showButton = ref(true);
+
+
+
+const downloadPdf = async () => {
+  showButton.value = false;
+  // await printPdf();
+  // showButton.value = true;
+};
 </script>
 
 <style lang="scss" scoped>
 .bg {
-  background-color: rgb(226, 218, 218);
-  min-height: 100dvh;
+  background-color: rgb(245, 245, 245);
   margin-inline: auto;
   padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
   .page {
     padding: 13.4708mm 16mm 11.6188mm;
     min-height: 1347px;
     background-color: #fff;
-    max-width: 957px;
-    width: 100%;
-    margin-inline: auto;
+    width: 957px;
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     .indent {
       max-width: 807px;
       width: 100%;
       margin-inline: auto;
-    }
-  }
-}
-.title {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5em;
-}
-.contacts {
-  display: flex;
-  gap: 1rem;
-  .contact {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-weight: 400;
-    font-size: 13px;
-
-    .info {
     }
   }
 }
