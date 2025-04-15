@@ -1,9 +1,17 @@
 <template>
   <client-only>
     <div class="bg">
-      <button v-if="showButton" @click="downloadPdf()">
-        <h1>EXPORT PDF</h1>
-      </button>
+      <div class="panel">
+        <button v-if="showButton" @click="international()">
+          <h3>international</h3>
+        </button>
+        <button v-if="showButton" @click="contact()">
+          <h3>turkish contact</h3>
+        </button>
+        <button v-if="showButton" @click="langauge()">
+          <h3>turkish langauge & contact</h3>
+        </button>
+      </div>
       <div v-if="!showButton" id="ready" />
       <div ref="cv" class="page">
         <div class="indent">
@@ -26,8 +34,7 @@
             title="Professional Experience"
             :icon="icon.experience"
             :text="experience" />
-          <br />
-          <br />
+
           <SectionTitle
             title="projects"
             :icon="icon.projects"
@@ -59,36 +66,57 @@ import {
 } from "~/content";
 
 const tr = ref(false);
+const trLang = ref(false);
+
 definePageMeta({ ssr: false });
 
 const showButton = ref(true);
 
-
-
-const downloadPdf = async () => {
-  showButton.value = false;
-  // await printPdf();
-  // showButton.value = true;
+const international = async () => {
+  tr.value = false;
+  await nextTick();
+  window.print();
+};
+const contact = async () => {
+  tr.value = true;
+  await nextTick();
+  window.print();
+};
+const langauge = async () => {
+  tr.value = true;
+  await nextTick();
+  window.print();
 };
 </script>
 
 <style lang="scss" scoped>
+@media print {
+  .panel {
+    display: none !important;
+  }
+}
+button {
+  padding: 1rem;
+}
+.panel {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
 .bg {
   background-color: rgb(245, 245, 245);
   margin-inline: auto;
-  padding-block: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   justify-content: center;
   align-items: center;
   .page {
-    padding: 13.4708mm 16mm 11.6188mm;
+    padding: 0.4708mm 16mm 11.6188mm;
     min-height: 1347px;
     background-color: #fff;
     width: 957px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     .indent {
       max-width: 807px;
       width: 100%;

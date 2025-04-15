@@ -11,9 +11,20 @@
           <NuxtLink :to="x.link">
             <div style="display: flex; gap: 0.4rem">
               <h4>{{ x.title }}</h4>
-              <img :src="icons.newTab" alt="" v-if="x.link" class="icon" />
+              <img
+                :src="icons.newTab"
+                alt=""
+                v-if="x.link && !x.subtitle"
+                class="icon" />
             </div>
-            <h5>{{ x.subtitle }}</h5>
+            <div style="display: flex; gap: 0.4rem">
+              <h5>{{ x.subtitle }}</h5>
+              <img
+                :src="icons.newTab"
+                alt=""
+                v-if="x.link && x.subtitle"
+                class="icon" />
+            </div>
           </NuxtLink>
           <div>
             {{ x.date }} {{ x.location && x.date && "|" }} {{ x.location }}
@@ -36,19 +47,18 @@ const props = defineProps(["title", "icon", "text", "cols"]);
 const gridStyle = computed(() => ({
   display: "grid",
   gridTemplateColumns: `repeat(${props.cols}, 1fr)`,
-  gap: "2.1rem",
+  gap: ".5rem",
 }));
 </script>
 
 <style lang="scss" scoped>
 p {
   font-size: 16.2px;
-  line-height: 1.35;
-  text-align: justify;
-  text-justify: inter-word;
+  line-height: 1.3;
 }
 .icon {
   width: 0.7rem;
+  transform: translateY(2px);
 }
 h5 {
   font-style: italic;
@@ -61,7 +71,7 @@ h5 {
   background-color: #f2f3f4;
   color: #495963;
   display: flex;
-  gap: 0.5rem;
+  gap: 0.25rem;
   padding: 0.5rem;
   justify-content: center;
   margin-block: 1rem;
@@ -75,6 +85,9 @@ ul {
   list-style: none; /* Remove HTML bullets */
   padding: 0;
   margin: 0;
+  gap: 3px;
+  display: flex;
+  flex-direction: column;
   li {
     display: flex;
     &:before {

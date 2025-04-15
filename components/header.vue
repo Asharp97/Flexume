@@ -22,7 +22,7 @@
       </NuxtLink>
       <div class="contact">
         <img :src="icons.location" alt="" />
-        <span v-if="tr" class="info"> Turkiye, Istanbul </span>
+        <span v-if="tr" class="info"> İstanbul, Türkiye </span>
         <span v-else class="info"> Dubai, UAE </span>
       </div>
       <NuxtLink

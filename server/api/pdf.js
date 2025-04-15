@@ -1,11 +1,4 @@
 import puppeteer from "puppeteer";
-
-/**
- * @license
- * Copyright 2017 Google Inc.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 ("use strict");
 
 export default defineEventHandler(async (event) => {

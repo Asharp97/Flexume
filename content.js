@@ -11,6 +11,12 @@ export const skills = [
     points: [`**Libraries and Tools:** TensorFlow, Scikit-learn, LangChain.`],
   },
   {
+    title: "Software Engineering Principles",
+    points: [
+      `SDLC, Agile Methodology, Scalable Architecture, Features Engineering.`,
+    ],
+  },
+  {
     title: "Programming Languages",
     points: [
       `**Primary:** Python, JavaScript, TypeScript.`,
@@ -24,12 +30,6 @@ export const skills = [
       `**Platforms**: Google Cloud Platform (GCP).`,
       `**Services**: Vertex AI, BigQuery, AutoML.`,
       `**Specializations**: Predictive Modeling, Data Analysis, Cloud-Based AI Solutions`,
-    ],
-  },
-  {
-    title: "Software Engineering Principles",
-    points: [
-      `SDLC, Agile Methodology, Scalable Architecture, Features Engineering.`,
     ],
   },
 ];

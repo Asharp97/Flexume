@@ -1,4 +1,3 @@
-const headerHeight = 18;
 const titleHeight = 20;
 
 const icons = {
